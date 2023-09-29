@@ -28,16 +28,37 @@
 
 <svelte:window
 	on:keydown|capture={(e) => {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		let func;
+
 		if (e.key === 'ArrowLeft' && step > 1) {
-			step--;
+			func = () => {
+				step--;
+			};
 			e.stopPropagation();
 			e.stopImmediatePropagation();
 		}
 		if (e.key === 'ArrowRight' && step < steps.length) {
-			step++;
+			func = () => {
+				step++;
+			};
 			e.stopPropagation();
 			e.stopImmediatePropagation();
 		}
+		if (!func) return;
+		if (
+			!('startViewTransition' in document) ||
+			typeof document.startViewTransition !== 'function'
+		) {
+			func();
+			return;
+		}
+		document.startViewTransition(() => {
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			func();
+		});
 	}}
 />
 

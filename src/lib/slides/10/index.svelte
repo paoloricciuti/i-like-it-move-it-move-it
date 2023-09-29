@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Design from '$lib/components/Design.svelte';
+	import SlideNine from '../9/index.svelte';
 </script>
 
-<Design phase={2} />
+<SlideNine />

@@ -33,6 +33,7 @@
 		box-sizing: border-box;
 		position: relative;
 		background-color: #222245;
+		max-height: 100%;
 	}
 	.lone {
 		grid-template-columns: 1fr;

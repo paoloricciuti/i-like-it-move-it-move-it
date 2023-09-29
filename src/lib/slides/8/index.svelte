@@ -1,5 +1,11 @@
-<script lang="ts">
-	import Design from '$lib/components/Design.svelte';
-</script>
+<shiki lang="css">
+	<style>
+		li {
+			transition: background-color 500ms;
+		}
 
-<Design phase={1} />
+		.sort-button svg {
+			transition: transform 500ms;
+		}
+	</style>
+</shiki>
