@@ -11,7 +11,7 @@ export function load({ params: { page = '0' } }) {
 	const last_slide = +(
 		slides
 			.sort((slide_a, slide_b) => {
-				return +slide_a.page - +slide_b.page;
+				return +(slide_a?.page ?? 0) - +(slide_b?.page ?? 0);
 			})
 			.at(-1)?.page ?? '0'
 	);
