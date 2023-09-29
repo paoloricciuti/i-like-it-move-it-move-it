@@ -2,7 +2,7 @@
 	import img from '$lib/assets/designer.jpg';
 	import SlackMessage from './SlackMessage.svelte';
 
-	const name = 'The designer';
+	const name = 'Patty Pixel';
 
 	export let num: number;
 	export let messages: Array<Messages>;
