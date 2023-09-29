@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SlideFortheen from '../14/index.svelte';
+	import SlideFourteen from '../14/index.svelte';
 </script>
 
-<SlideFortheen />
+<SlideFourteen />

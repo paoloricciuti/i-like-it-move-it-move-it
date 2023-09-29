@@ -53,11 +53,11 @@
 						payed = payed;
 						to_pay = to_pay.filter((el) => el !== num);
 					}}
-					in:send={{
+					out:send={{
 						key: num,
 						duration: phase > 3 ? 500 : 0,
 					}}
-					out:receive={{
+					in:receive={{
 						key: num,
 						duration: phase > 3 ? 500 : 0,
 					}}
@@ -97,11 +97,11 @@
 						to_pay = to_pay;
 						payed = payed.filter((el) => el !== num);
 					}}
-					in:send={{
+					out:send={{
 						key: num,
 						duration: phase > 3 ? 500 : 0,
 					}}
-					out:receive={{
+					in:receive={{
 						key: num,
 						duration: phase > 3 ? 500 : 0,
 					}}

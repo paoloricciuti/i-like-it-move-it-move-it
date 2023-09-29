@@ -1,7 +1,7 @@
 import { getHighlighter } from 'shiki-es';
 import MagicString from 'magic-string';
 
-const highlighter = await getHighlighter({ theme: 'nord' });
+const highlighter = await getHighlighter({ theme: 'dark-plus' });
 
 export const highlight = () => {
 	return {
