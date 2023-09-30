@@ -1,5 +1,14 @@
 <script lang="ts">
-	import SlideThree from '../2/index.svelte';
+	import { setupViewTransition } from 'sveltekit-view-transition';
+
+	const { transition } = setupViewTransition();
 </script>
 
-<SlideThree />
+<span use:transition={'fullstack'}>👨🏻‍💻</span>
+
+<style>
+	span {
+		font-size: 30vmin;
+		position: absolute;
+	}
+</style>

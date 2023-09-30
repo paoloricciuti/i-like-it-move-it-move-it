@@ -14,6 +14,7 @@
 	"devDependencies": {
 		"@fontsource/lato": "^5.0.12",
 		"@sveltejs/kit": "^1.25.0",
+		"@types/node": "^20.8.0",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"@typescript-eslint/parser": "^6.0.0",
 		"eslint": "^8.28.0",
@@ -25,6 +26,7 @@
 		"svelte-check": "^3.4.3",
 		"sveltekit-view-transition": "^0.4.5",
 		"tslib": "^2.4.1",
+		"tsm": "^2.3.0",
 		"typescript": "^5.0.0",
 		"vite": "^4.4.2"
 	},

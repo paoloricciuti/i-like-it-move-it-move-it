@@ -2,4 +2,4 @@
 	import Design from '$lib/components/Design.svelte';
 </script>
 
-<Design phase={4} />
+<Design phase={3} />

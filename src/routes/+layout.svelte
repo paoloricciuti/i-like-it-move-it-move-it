@@ -17,7 +17,7 @@
 		}
 	}}
 />
-<main class:lone={data.messages.length === 0}>
+<main class:lone={data.messages.length === 0 || data.num > 28}>
 	<section>
 		<slot />
 	</section>

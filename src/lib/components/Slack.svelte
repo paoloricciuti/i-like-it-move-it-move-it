@@ -44,7 +44,8 @@
 	`}
 	{/if}
 </svelte:head>
-{#if messages.length > 0}
+<!--28 last slide with chat-->
+{#if messages.length > 0 && num <= 28}
 	<aside use:transition={'slack'}>
 		<section>
 			<Avatar class="avatar" src={img} alt="The Designer" />
