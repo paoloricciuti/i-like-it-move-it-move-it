@@ -1,4 +1,4 @@
-import { rename, readdir, mkdir } from 'node:fs/promises';
+import { rename, readdir, mkdir, writeFile } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 
 const [, , slide_str] = process.argv;
@@ -38,6 +38,8 @@ for (let i = 0; slides[i] >= slide_num; i++) {
 	);
 	console.log(`Renamed ${to_rename} to ${to_rename + 1}`);
 }
-mkdir(join(slide_folder, slide_num.toString()));
+await mkdir(join(slide_folder, slide_num.toString()));
+
+await writeFile(join(slide_folder, slide_num.toString(), 'index.svelte'), '');
 
 console.log(`${slide_num} created!`);
