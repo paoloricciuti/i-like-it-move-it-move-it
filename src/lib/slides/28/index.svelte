@@ -1,8 +1,8 @@
 <script lang="ts">
-	import woke_up from './wake-up.gif';
+	import leaving_work from './leaving-work.gif';
 </script>
 
-<img src={woke_up} alt="dev being woke up by message" />
+<img src={leaving_work} alt="leaving work happy" />
 
 <style>
 	img {

@@ -7,7 +7,7 @@ export const highlight = () => {
 	return {
 		markup({ content, filename }) {
 			const magic_string = new MagicString(content);
-			magic_string.replace(/<shiki lang="(.+)">((?:.|\n|\r\n)*)<\/shiki>/, (_, $1, $2) => {
+			magic_string.replaceAll(/<shiki lang="(.+)">((?:.|\n|\r\n)*?)<\/shiki>/g, (_, $1, $2) => {
 				const lines = $2.split('\n');
 				lines.shift();
 				const number_of_tabs = [...lines[0]].findIndex((char) => char !== '\t');

@@ -17,6 +17,8 @@ body {
 	padding: 3vmin;
 	border-radius: 1vmin;
 	font-size: 3vmin;
+	max-width: 100%;
+	overflow-x: auto;
 }
 
 @keyframes slide-in {
