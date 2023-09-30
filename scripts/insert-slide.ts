@@ -1,4 +1,4 @@
-import { rename, readdir } from 'node:fs/promises';
+import { rename, readdir, mkdir } from 'node:fs/promises';
 import { resolve, join } from 'node:path';
 
 const [, , slide_str] = process.argv;
@@ -30,8 +30,14 @@ for (const slide_folder of slides_folders) {
 
 slides.sort((slide_a, slide_b) => slide_b - slide_a);
 
-for (let i = 0; slides[i] < +slide_str; i++) {
+for (let i = 0; slides[i] >= slide_num; i++) {
 	const to_rename = slides[i];
-	rename(join(slide_folder, to_rename.toString()), join(slide_folder, (to_rename + 1).toString()));
+	await rename(
+		join(slide_folder, to_rename.toString()),
+		join(slide_folder, (to_rename + 1).toString()),
+	);
 	console.log(`Renamed ${to_rename} to ${to_rename + 1}`);
 }
+mkdir(join(slide_folder, slide_num.toString()));
+
+console.log(`${slide_num} created!`);
