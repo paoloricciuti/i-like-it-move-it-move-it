@@ -87,20 +87,19 @@
 		<pre>Last: {JSON.stringify(last_after_el, null, 2)}</pre>
 	{/if}
 	{#if phase === 'invert'}
-		<div
-			use:store_bounding_rect={(rect) => {
-				last_after_el = rect;
-			}}
-			class="before invert"
-		></div>
+		<div class="before invert"></div>
 		<pre>First: {JSON.stringify(first_before_el, null, 2)}</pre>
 		<pre>Last: {JSON.stringify(last_after_el, null, 2)}</pre>
 		<pre class="wrapper">
 		<shiki lang="js">
 			const top = last.top - first.top;
 			const left = last.left - first.left;
+			const scaleX = last.width / first.width;
+			const scaleY = last.height / first.height;
 			let transform = "translateX("+left+"px);";
 			transform += "translateY("+top+"px);";
+			transform += "scaleX("+scaleX+");";
+			transform += "ScaleY("+scaleY+");";
 			last.style.transform = transform;
 		</shiki>
 	</pre>
@@ -113,8 +112,12 @@
 		<shiki lang="js">
 			const top = last.top - first.top;
 			const left = last.left - first.left;
+			const scaleX = last.width / first.width;
+			const scaleY = last.height / first.height;
 			let transform = "translateX("+left+"px);";
 			transform += "translateY("+top+"px);";
+			transform += "scaleX("+scaleX+");";
+			transform += "ScaleY("+scaleY+");";
 			last.style.transform = transform;
 			setTimeout(()=> last.style.transform="", 0);
 		</shiki>

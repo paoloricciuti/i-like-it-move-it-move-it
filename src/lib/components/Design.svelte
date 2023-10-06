@@ -3,8 +3,10 @@
 	import { crossfade } from 'svelte/transition';
 	export let phase = 0;
 
-	let to_pay = [0, 1, 2, 3, 4];
-	let payed = [5, 6, 7];
+	export let new_page = false;
+
+	let to_pay = !new_page ? [0, 1, 2, 3, 4] : [0, 1, 2, 3];
+	let payed = !new_page ? [5, 6, 7] : [5, 6, 7, 4];
 
 	const [send, receive] = crossfade({});
 
@@ -17,8 +19,8 @@
 	<div class="menu">
 		<ul>
 			<li>Home</li>
-			<li class="selected">Dashboard</li>
-			<li>Invoice</li>
+			<li class:selected={!new_page}>Dashboard</li>
+			<li class:selected={new_page}>Invoice</li>
 			<li>Users</li>
 		</ul>
 	</div>
