@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Clicks from '$lib/components/Clicks.svelte';
 	import Design from '$lib/components/Design.svelte';
 	const phases = ['start', 'screenshot', 'on-top', 'crossfade'] as const;
 	let selected_phase = 0;
@@ -12,41 +13,17 @@
 	}
 </script>
 
-<svelte:window
-	on:keydown|capture={(e) => {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		let func;
-
-		if (e.key === 'ArrowLeft' && selected_phase >= 1) {
-			func = () => {
-				selected_phase--;
-			};
-			e.stopPropagation();
-			e.stopImmediatePropagation();
-		}
-		if (e.key === 'ArrowRight' && selected_phase < phases.length - 1) {
-			func = () => {
-				selected_phase++;
-			};
-			e.stopPropagation();
-			e.stopImmediatePropagation();
-		}
-		if (!func) return;
-		if (
-			!('startViewTransition' in document) ||
-			typeof document.startViewTransition !== 'function'
-		) {
-			func();
-			return;
-		}
-		document.startViewTransition(() => {
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			func();
-		});
+<Clicks
+	back={() => {
+		selected_phase--;
 	}}
+	can_back={selected_phase >= 1}
+	forward={() => {
+		selected_phase++;
+	}}
+	can_forward={selected_phase < phases.length - 1}
 />
+
 <section>
 	<article
 		class:screenshot={phases[selected_phase] === 'screenshot'}

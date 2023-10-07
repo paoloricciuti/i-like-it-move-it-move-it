@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Clicks from '$lib/components/Clicks.svelte';
+
 	const phases = ['show', 'first', 'last', 'invert', 'play'] as const;
 	let selected_phase = 0;
 	$: phase = phases[selected_phase];
@@ -20,44 +22,22 @@
 	let last_after_el: DOMRect;
 </script>
 
+<Clicks
+	back={() => {
+		selected_phase--;
+		is_before = true;
+	}}
+	can_back={selected_phase > 1}
+	forward={() => {
+		selected_phase++;
+		is_before = true;
+	}}
+	can_forward={selected_phase < phases.length - 1}
+/>
+
 <svelte:window
 	on:click={() => {
 		is_before = !is_before;
-	}}
-	on:keydown|capture={(e) => {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		let func;
-
-		if (e.key === 'ArrowLeft' && selected_phase > 1) {
-			func = () => {
-				selected_phase--;
-				is_before = true;
-			};
-			e.stopPropagation();
-			e.stopImmediatePropagation();
-		}
-		if (e.key === 'ArrowRight' && selected_phase < phases.length - 1) {
-			func = () => {
-				selected_phase++;
-				is_before = true;
-			};
-			e.stopPropagation();
-			e.stopImmediatePropagation();
-		}
-		if (!func) return;
-		if (
-			!('startViewTransition' in document) ||
-			typeof document.startViewTransition !== 'function'
-		) {
-			func();
-			return;
-		}
-		document.startViewTransition(() => {
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			func();
-		});
 	}}
 />
 <section>

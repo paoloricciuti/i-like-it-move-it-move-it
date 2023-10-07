@@ -1,16 +1,58 @@
 <script lang="ts">
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	import { beforeNavigate } from '$app/navigation';
+	import Clicks from '$lib/components/Clicks.svelte';
+
+	const phases = ['click', 'beforeNavigate', 'load', 'afterNavigate', 'render'] as const;
+	let selected_phase = -1;
 </script>
 
-<shiki lang="svelte">
-	<script lang="ts">
-		import { beforeNavigate } from '$app/navigation';
+<Clicks
+	forward={() => {
+		selected_phase++;
+	}}
+	back={() => {
+		selected_phase--;
+	}}
+	can_back={selected_phase > -1}
+	can_forward={selected_phase < phases.length - 1}
+/>
 
-		beforeNavigate(() => {
-			document.startViewTransition(() => {
-				// proceed with the navigation
+<section>
+	<shiki lang="svelte">
+		<script lang="ts">
+			import { beforeNavigate } from '$app/navigation';
+
+			beforeNavigate(() => {
+				document.startViewTransition(() => {
+					// proceed with the navigation
+				});
 			});
-		});
-	</script>
-</shiki>
+		</script>
+	</shiki>
+
+	<ul>
+		{#each phases as phase}
+			<li class:current={phases[selected_phase] === phase}>{phase}</li>
+		{/each}
+	</ul>
+</section>
+
+<style>
+	section {
+		display: flex;
+		gap: 2vmin;
+	}
+	section :global(.shiki) {
+		font-size: 2vmin;
+	}
+	ul {
+		padding: 0;
+		list-style: none;
+	}
+	li {
+		background-color: #222;
+		padding: 1vmin;
+	}
+	li.current {
+		background-color: #555;
+	}
+</style>

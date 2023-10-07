@@ -33,6 +33,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@neoconfetti/svelte": "^1.0.0",
 		"@sveltejs/adapter-static": "^2.0.3",
 		"magic-string": "^0.30.4",
 		"shiki-es": "^0.14.0"

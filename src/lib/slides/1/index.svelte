@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Clicks from '$lib/components/Clicks.svelte';
 	import me from './me.jpg';
 	import { setupViewTransition } from 'sveltekit-view-transition';
 
@@ -26,44 +27,19 @@
 	const { transition } = setupViewTransition();
 </script>
 
-<svelte:window
-	on:keydown|capture={(e) => {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		let func;
-
-		if (e.key === 'ArrowLeft' && step > 1) {
-			func = () => {
-				step--;
-			};
-			e.stopPropagation();
-			e.stopImmediatePropagation();
-		}
-		if (e.key === 'ArrowRight' && step < steps.length) {
-			func = () => {
-				step++;
-			};
-			e.stopPropagation();
-			e.stopImmediatePropagation();
-		}
-		if (!func) return;
-		if (
-			!('startViewTransition' in document) ||
-			typeof document.startViewTransition !== 'function'
-		) {
-			func();
-			return;
-		}
-		document.startViewTransition(() => {
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			func();
-		});
+<Clicks
+	forward={() => {
+		step++;
 	}}
+	back={() => {
+		step--;
+	}}
+	can_back={step > 1}
+	can_forward={step < steps.length}
 />
 
 <section>
-	<h1>Who am i?</h1>
+	<h1>Who am I?</h1>
 	<img src={me} alt="Paolo Ricciuti" />
 	<ul>
 		{#each { length: step } as _, i}
