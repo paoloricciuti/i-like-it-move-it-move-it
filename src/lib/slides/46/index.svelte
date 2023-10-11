@@ -1,26 +1,30 @@
 <script lang="ts">
+	import VideoHover from '$lib/components/VideoHover.svelte';
+	import header from './header.mp4';
 	function transition(_node: HTMLElement, _props: string) {
 		// just to shut up TS
 	}
 </script>
 
-<shiki lang="svelte">
-	<script>
-		import { setupViewTransition } from 'sveltekit-view-transition';
+<VideoHover video={header}>
+	<shiki lang="svelte">
+		<script>
+			import { setupViewTransition } from 'sveltekit-view-transition';
 
-		const { transition } = setupViewTransition();
-	</script>
+			const { transition } = setupViewTransition();
+		</script>
 
-	<header use:transition={'header'}>
-		<!-- links -->
-	</header>
+		<header use:transition={'header'}>
+			<!-- links -->
+		</header>
 
-	<slot />
+		<slot />
 
-	<style>
-		:global(::view-transition-old(header)),
-		:global(::view-transition-new(header)) {
-			/* ... */
-		}
-	</style>
-</shiki>
+		<style>
+			:root::view-transition-old(header),
+			:root::view-transition-new(header) {
+				animation-duration: 250ms;
+			}
+		</style>
+	</shiki>
+</VideoHover>
