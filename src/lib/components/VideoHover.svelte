@@ -2,18 +2,18 @@
 	export let video: string;
 	export let font_size = 1.5;
 	let paused = true;
-	let hoverable = true;
+	let hoverable = false;
 	let currentTime: number;
 </script>
 
 <svelte:window
 	on:keypress={(e) => {
 		if (e.key === ' ' && !e.repeat) {
-			hoverable = false;
+			hoverable = true;
 		}
 	}}
 	on:keyup={() => {
-		hoverable = true;
+		hoverable = false;
 	}}
 />
 
